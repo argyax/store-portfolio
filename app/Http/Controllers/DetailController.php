@@ -15,6 +15,11 @@ class DetailController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request, $id)
     {
         $product = Product::with(['galleries','user'])->where('slug', $id)->firstOrFail();
